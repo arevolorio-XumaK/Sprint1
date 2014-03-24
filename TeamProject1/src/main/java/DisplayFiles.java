@@ -44,7 +44,6 @@ public class DisplayFiles extends HttpServlet {
                   out.println("</head>");
                   out.println("<body>");
                   out.println("<center><h1>Select File</h1></center>");
-                  out.println("<center><h1>See my commit</h1></center>"); 
                   out.println("<center><form action=\"http://localhost:8084/TeamProject1/index.jsp\"><input type=\"submit\" value=\"Home\"></form></center>");
                   out.println("</body>");
                   out.println("</html>");
