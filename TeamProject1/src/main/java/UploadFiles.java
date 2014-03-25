@@ -66,11 +66,9 @@ public class UploadFiles extends HttpServlet {
     /**
      * This method is used to create a Session on jackrabbit repository.
      * 
-     * @return a Session that is going to be used to enter to Session Nodes.
-     * @throws NoSuchWorkspaceException
-     * @throws RepositoryException 
+     * @return a Session that is going to be used to enter to Session Nodes. 
      */
-    protected Session repoLogin() throws NoSuchWorkspaceException, RepositoryException{
+    protected Session repoLogin(){
         try{
             String url = "http://localhost:8080/rmi";
             Repository repository = JcrUtils.getRepository(url);
@@ -117,16 +115,26 @@ public class UploadFiles extends HttpServlet {
                     appNode.addNode("users");
                     
                     if(!appNode.hasNode("files/images")){
-                        appNode.addNode("images");              
+                        Node images = appNode.addNode("images");
+                        images.addNode("jpg");
+                        images.addNode("bmp");
+                        images.addNode("png");
+                        images.addNode("jpeg");
                     }
                     if(!appNode.hasNode("files/music")){
-                        appNode.addNode("music");               
+                        Node music = appNode.addNode("music");
+                        music.addNode("mp3");
+                        music.addNode("ogg");
+                        music.addNode("wav");
                     }
                     if(!appNode.hasNode("files/documents")){
-                        appNode.addNode("documents");                
+                        Node documents = appNode.addNode("documents");                
                     }
                     if(!appNode.hasNode("files/videos")){
-                        appNode.addNode("videos");              
+                        Node videos = appNode.addNode("videos");
+                        videos.addNode("mp4");
+                        videos.addNode("ogg");
+                        videos.addNode("webm");
                     }
                 }
                 return true;
