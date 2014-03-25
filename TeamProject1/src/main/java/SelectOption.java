@@ -7,7 +7,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author xumakgt5
+ * @author xumakgt1
  */
-@WebServlet(urlPatterns = {"/DisplayFiles"})
-@MultipartConfig
-public class DisplayFiles extends HttpServlet {
+@WebServlet(urlPatterns = {"/SelectOption"})
+public class SelectOption extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,25 +30,26 @@ public class DisplayFiles extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(!(request == null)){
-            if(!(response == null)){
-                response.setContentType("text/html;charset=UTF-8");
-                PrintWriter out = response.getWriter();
-                try{
-                  out.println("<!DOCTYPE html>");
-                  out.println("<html>");
-                  out.println("<head>");
-                  out.println("<title>Servlet Download</title>");
-                  out.println("</head>");
-                  out.println("<body>");
-                  out.println("<center><h1>Select a File</h1></center>");
-                  out.println("<center><form action=\"http://localhost:8084/TeamProject1/SelectOption\"><input type=\"submit\" value=\"Back\"></form></center>");
-                  out.println("</body>");
-                  out.println("</html>");
-                } finally{
-                    out.close();
-                }
-            }
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SelectOption</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<center><h1>Select an Option</h1></center>");
+            out.println("<center><form action=\"http://localhost:8084/TeamProject1/index.jsp\"><input type=\"submit\" value=\"Home\"></form></center>");
+            out.println("<form action=\"http://localhost:8084/TeamProject1/DisplayFiles\"><input type=\"submit\" value=\"Music\"></form>");
+            out.println("<form action=\"http://localhost:8084/TeamProject1/DisplayFiles\"><input type=\"submit\" value=\"Images\"></form>");
+            out.println("<form action=\"http://localhost:8084/TeamProject1/DisplayFiles\"><input type=\"submit\" value=\"Videos\"></form>");
+            out.println("<form action=\"http://localhost:8084/TeamProject1/DisplayFiles\"><input type=\"submit\" value=\"Documents\"></form>");
+            out.println("</body>");
+            out.println("</html>");
+        } finally {
+            out.close();
         }
     }
 
