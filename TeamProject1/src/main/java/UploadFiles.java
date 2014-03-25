@@ -100,9 +100,30 @@ public class UploadFiles extends HttpServlet {
         }
     }
     
-    protected boolean startRepo(Session jcrSession){
-        
-        return false;   
+    protected void startRepo(Session jcrSession){
+        if(jcrSession != null){
+            try{
+                Node root = jcrSession.getRootNode();
+                Node appNode;
+                if(!root.hasNode("storefiles")){
+                    appNode = root.addNode("storefiles");
+                    if(!appNode.hasNode("storefiles/images")){
+                        appNode.addNode("images");              
+                    }
+                    if(!appNode.hasNode("storefiles/music")){
+                        appNode.addNode("music");               
+                    }
+                    if(!appNode.hasNode("storefiles/documents")){
+                        appNode.addNode("documents");                
+                    }
+                    if(!appNode.hasNode("storefiles/others")){
+                        appNode.addNode("others");              
+                    }
+                }
+            }catch(RepositoryException re){
+                System.out.println("Error:" + re);
+            }
+        }   
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
