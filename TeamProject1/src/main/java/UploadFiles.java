@@ -111,9 +111,7 @@ public class UploadFiles extends HttpServlet {
                 Node root = jcrSession.getRootNode();
                 if(!root.hasNode("fileServer")){
                     Node appNode = root.addNode("fileServer");
-                    appNode.addNode("files");
-                    appNode.addNode("users");
-                    
+                    appNode.addNode("files");                    
                     if(!appNode.hasNode("files/images")){
                         Node images = appNode.addNode("images");
                         images.addNode("jpg");
