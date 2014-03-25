@@ -100,30 +100,43 @@ public class UploadFiles extends HttpServlet {
         }
     }
     
-    protected void startRepo(Session jcrSession){
+    /**
+     * Create the nodes of the workspace and return true tree if the nodes exists return true 
+     * 
+     * @param jcrSession the active Session with the repository
+     * @return true if the nodes are correct false if something is wrong with the Session
+     * @see Session
+     */
+    protected boolean startRepo(Session jcrSession){
         if(jcrSession != null){
             try{
                 Node root = jcrSession.getRootNode();
-                Node appNode;
-                if(!root.hasNode("storefiles")){
-                    appNode = root.addNode("storefiles");
-                    if(!appNode.hasNode("storefiles/images")){
+                if(!root.hasNode("fileServer")){
+                    Node appNode = root.addNode("fileServer");
+                    appNode.addNode("files");
+                    appNode.addNode("users");
+                    
+                    if(!appNode.hasNode("files/images")){
                         appNode.addNode("images");              
                     }
-                    if(!appNode.hasNode("storefiles/music")){
+                    if(!appNode.hasNode("files/music")){
                         appNode.addNode("music");               
                     }
-                    if(!appNode.hasNode("storefiles/documents")){
+                    if(!appNode.hasNode("files/documents")){
                         appNode.addNode("documents");                
                     }
-                    if(!appNode.hasNode("storefiles/others")){
-                        appNode.addNode("others");              
+                    if(!appNode.hasNode("files/videos")){
+                        appNode.addNode("videos");              
                     }
                 }
+                return true;
+            
             }catch(RepositoryException re){
-                System.out.println("Error:" + re);
+                System.out.println("Error: Repository Session");
+                return false;
             }
-        }   
+        }
+        return false;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
