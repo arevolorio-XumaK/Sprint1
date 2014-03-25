@@ -101,7 +101,7 @@ public class UploadFiles extends HttpServlet {
     }
     
     /**
-     * Create the nodes of the workspace and return true tree if the nodes exists return true 
+     * Create the nodes of the workspace and return true if the nodes exists return true 
      * 
      * @param jcrSession the active Session with the repository
      * @return true if the nodes are correct false if something is wrong with the Session
